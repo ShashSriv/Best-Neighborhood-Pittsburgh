@@ -1,14 +1,13 @@
 import geopandas
 import pandas
 from shapely.geometry import Point
-from typing import Union
 
 # Load neighborhoods
 NEIGHBORHOODS = geopandas.read_file("https://data.wprdc.org/dataset/e672f13d-71c4-4a66-8f38-710e75ed80a4/resource/c5a93a8e-03d7-4eb3-91a8-c6b7db0fa261/download/pittsburghpaneighborhoods-.zip")
 # Load zip codes
 ZIPS = geopandas.read_file("https://data.wprdc.org/dataset/1a5135de-cabe-4e23-b5e4-b2b8dd733817/resource/ec228c0e-6b1e-4f44-a335-df05546d52ea/download/alcogisallegheny-county-zip-code-boundaries.zip")
 
-def geo_to_neighborhood(latitude: float, longitude: float) -> Union[str, None]:
+def geo_to_neighborhood(latitude, longitude):
     """Converts a geolocation (latitude and longitude) to a Pittsburgh neighborhood name.
 
     Args:
@@ -29,7 +28,7 @@ def geo_to_neighborhood(latitude: float, longitude: float) -> Union[str, None]:
     # Wasn't contained in the neighborhood
     return None
 
-def zip_to_neighborhoods(zip_code: int) -> list[str]:
+def zip_to_neighborhoods(zip_code):
     """Converts a ZIP code to a list of Pittsburgh neighborhood names.
 
     Args:
@@ -53,7 +52,7 @@ def zip_to_neighborhoods(zip_code: int) -> list[str]:
             zp_neighborhoods.append(neighborhood["hood"])
     return zp_neighborhoods
 
-def census_to_neighborhoods(census_tract: int) -> list[str]:
+def census_to_neighborhoods(census_tract):
     """Converts a census tract number to a list of Pittsburgh neighborhoods.
 
     Args:
